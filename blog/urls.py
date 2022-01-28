@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    # path('', include('home.urls')),
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
     # path('froala_editor/',include('froala_editor.urls'))
 ]

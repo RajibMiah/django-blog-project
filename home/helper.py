@@ -5,12 +5,11 @@ import random
 '''
 generated unique random slug
 '''
-
-  
-
-def generate_random_string(N):
-    res = ''.join(random.choice(string.ascii_uppercase + string.digits , k = N))
+def generate_random_string(N): 
+    res = ''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k = N))
     return res
+  
 
 def generate_slug(text):
     new_slug = slugify(text)

@@ -1,4 +1,3 @@
-from pickle import TRUE
 from django.db import models
 from froala_editor.fields import FroalaField
 from .helper import *

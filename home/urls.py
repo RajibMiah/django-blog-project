@@ -1,8 +1,15 @@
 
-from django.urls import path 
+from django.urls import path ,include
 from .views import *
+# from rest_framework import routers
+
+# router = routers.SimpleRouter()
+
+
+
 urlpatterns = [
     path('' , home , name="home"),
+    path('api/' , include('home.api.urls')),
     path('login/' , login_view , name="login_view"),
     path('register/' , register_view , name="register_view"),
     path('add-blog/' , add_blog, name="add_blog"),

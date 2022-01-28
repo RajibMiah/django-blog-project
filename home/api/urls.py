@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-app_name = 'home-api'
+# app_name = 'home-api'
 
 urlpatterns = [
     path('', include('home.api.base.urls')),

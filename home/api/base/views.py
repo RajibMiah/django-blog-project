@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from home.helper import *
 from django.contrib.auth import authenticate , login
-# from models import Profile
+from home.models import Profile
 
 
 class loginView(APIView):
@@ -14,7 +14,7 @@ class loginView(APIView):
         response = {}
         response['status'] = 500
         response['message'] = 'Something went wrong'
-        
+
         try:
           data = request.data
 
@@ -81,7 +81,7 @@ class RegisterView(APIView):
             """
             NOTE:: ISSUED ON PROFILE CREATE
             """
-            # Profile.objects.create(user = user_obj , token = token)
+            Profile.objects.create(user = user_obj , token = token)
 
             #send_mail_to_user(token , data.get('username'))
             response['message'] = 'User created '

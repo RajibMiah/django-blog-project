@@ -1,4 +1,4 @@
-from django.shortcuts import render 
+from django.shortcuts import redirect, render 
 from .forms import *
 
 
@@ -15,6 +15,30 @@ def register_view(request):
 def add_blog(request):
 
     context = {'form':BlogForm}
+    try:
+        if request.method == 'POST':
+            form = BlogForm(request.POST)
+            image = request.FILES['image']
+            title = request.POST.get['title']
+            user = request.user
+
+            if form.is_valid():
+                content = form.cleaned_data['content']
+            blog_obj = BlogForm.object.create(
+                user = user ,
+                title = title,
+                content = content,
+                image = image
+            )    
+
+            print('create object ' , blog_obj)
+            return redirect('/add-blog/')
+
+    except Exception as e:
+
+        print('Exception :', e)
+
+
     return render(request , 'add_blog.html' , context)
 
 def blog_detail(request):

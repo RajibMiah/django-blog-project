@@ -14,11 +14,12 @@ class loginView(APIView):
         response = {}
         response['status'] = 500
         response['message'] = 'Something went wrong'
-
+        
         try:
           data = request.data
+
           if data.get('username') is None:
-              response['message'] = 'key username not found'
+              response['message'] = 'key username not found' 
               raise Exception('key user not found')
           if data.get('password') is None:
               response['message'] = 'key password not found'
@@ -70,7 +71,7 @@ class RegisterView(APIView):
                 response['message'] = 'username already taken'
                 raise Exception('username taken')
 
-            user_obj = User.objects.create(email = data.get('username') , username = data.get('username'))
+            user_obj = User.objects.create(email = data.get('email') , username = data.get('username'))
 
             user_obj.set_password(data.get('password'))
 
@@ -78,7 +79,7 @@ class RegisterView(APIView):
 
             token = generate_random_string(20)
             """
-            NOTE:: ISSUDE ON PROFILE CREATE
+            NOTE:: ISSUED ON PROFILE CREATE
             """
             # Profile.objects.create(user = user_obj , token = token)
 

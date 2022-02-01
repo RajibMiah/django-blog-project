@@ -45,7 +45,7 @@ function register(){
     var csrf = document.getElementById('csrf').value
 
     if(username == '' && password == ''){
-        alert('You must enter both')
+        alert('You must enter  username and password')
     }
 
     var data = {
@@ -63,7 +63,8 @@ function register(){
         body : JSON.stringify(data)
     }).then(result => result.json())
     .then(response => {
-        console.log(response)
+        console.log("===============response logs=============")
+        console.log("result console response: " ,response)
         if(response.status == 200){
           
         }

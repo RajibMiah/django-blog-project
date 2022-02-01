@@ -1,8 +1,6 @@
 
 
-
-console.log("ss")
-function login(){
+const  login = () => {
     var username = document.getElementById('loginUsername').value
     var password = document.getElementById('loginPassword').value
     var csrf = document.getElementById('csrf').value
@@ -39,7 +37,7 @@ function login(){
 }
 
 
-function register(){
+const register = () =>{
     var username = document.getElementById('loginUsername').value
     var password = document.getElementById('loginPassword').value
     var csrf = document.getElementById('csrf').value

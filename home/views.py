@@ -1,5 +1,7 @@
+import imp
 from django.shortcuts import redirect, render 
 from .forms import *
+from home.models import *
 
 
 def home(request):
@@ -17,21 +19,20 @@ def add_blog(request):
     context = {'form':BlogForm}
     try:
         if request.method == 'POST':
+           
             form = BlogForm(request.POST)
+            print(request.FILES)
             image = request.FILES['image']
-            title = request.POST.get['title']
+            title = request.POST.get('title')
             user = request.user
-
             if form.is_valid():
                 content = form.cleaned_data['content']
-            blog_obj = BlogForm.object.create(
+            blog_obj = BlogModel.objects.create(
                 user = user ,
                 title = title,
                 content = content,
                 image = image
             )    
-
-            print('create object ' , blog_obj)
             return redirect('/add-blog/')
 
     except Exception as e:

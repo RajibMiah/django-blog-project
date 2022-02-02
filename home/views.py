@@ -1,7 +1,9 @@
 import imp
+import re
 from django.shortcuts import redirect, render 
 from .forms import *
 from home.models import *
+from django.contrib.auth import logout
 
 
 def home(request):
@@ -53,7 +55,7 @@ def blog_detail(request , slug):
         print('<==========End EXCEPTION=========>')
     
     return render(request , 'blog_details.html' , context)
-    
+
 
 def see_blog(request):
     return render(request , 'see_blog.html')
@@ -66,7 +68,8 @@ def blog_update(request):
 
 
 def logout_view(request):
-    pass
+    logout(request)
+    return redirect('/')
 
 def verify(request):
     pass

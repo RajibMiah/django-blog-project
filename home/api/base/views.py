@@ -70,13 +70,13 @@ class RegisterView(APIView):
             if check_user:
                 response['message'] = 'username already taken'
                 raise Exception('username taken')
-
-            user_obj = User.objects.create(email = data.get('email') , username = data.get('username'))
-
+        
+            user_obj = User.objects.create(email = data.get('username') , username = data.get('username'))
+           
             user_obj.set_password(data.get('password'))
 
             user_obj.save()
-
+        
             token = generate_random_string(20)
             """
             NOTE:: ISSUED ON PROFILE CREATE

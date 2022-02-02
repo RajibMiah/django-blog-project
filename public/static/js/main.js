@@ -50,6 +50,7 @@ const register = () =>{
         'username' : username,
         'password' : password
     }
+    console.log('data===============================' , data)
 
     fetch('/api/register/' , {
         method : 'POST',
@@ -67,7 +68,7 @@ const register = () =>{
           
         }
         else{
-            alert(response.message)
+            alert("error",response.message)
         }
 
     })

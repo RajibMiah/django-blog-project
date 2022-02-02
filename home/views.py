@@ -5,7 +5,8 @@ from home.models import *
 
 
 def home(request):
-    return render(request , 'home.html')    
+    context = {'blogs': BlogModel.objects.all()}
+    return render(request , 'home.html' , context)    
 
 
 def login_view(request):
@@ -21,7 +22,6 @@ def add_blog(request):
         if request.method == 'POST':
            
             form = BlogForm(request.POST)
-            print(request.FILES)
             image = request.FILES['image']
             title = request.POST.get('title')
             user = request.user
@@ -33,17 +33,27 @@ def add_blog(request):
                 content = content,
                 image = image
             )    
+            print('blog created ' , blog_obj)
             return redirect('/add-blog/')
 
     except Exception as e:
-
-        print('Exception :', e)
+        print('<==========EXCEPTION=============>')
+        print(e)
+        print('<==========End EXCEPTION=========>')
 
 
     return render(request , 'add_blog.html' , context)
 
-def blog_detail(request):
-    return render(request , 'base_details.html')
+def blog_detail(request , slug):
+    try:
+        context = {'blog_obj': BlogModel.objects.filter(slug = slug).first()}
+    except Exception as e:
+        print('<==========EXCEPTION=============>')
+        print(e)
+        print('<==========End EXCEPTION=========>')
+    
+    return render(request , 'blog_details.html' , context)
+    
 
 def see_blog(request):
     return render(request , 'see_blog.html')

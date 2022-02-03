@@ -9,6 +9,9 @@ class Profile(models.Model):
     is_verified = models.BooleanField(default=False)
     token = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return str(self.user)
+
 
 
 class BlogModel(models.Model):

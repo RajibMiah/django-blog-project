@@ -60,15 +60,23 @@ def see_blog(request):
     context =  {}
     try:
         context['blog_objs'] = BlogModel.objects.filter(user = request.user)
+
     except Exception as e:
-        print('<==========EXCEPTION=============>')
         print(e)
-        print('<==========End EXCEPTION=========>')
     
     return render(request , 'see_blog.html' , context)
 
-def blog_delete(request):
-    pass
+def blog_delete(request , id):
+    try:
+        blog_obj = BlogModel.objects.get(id = id)
+        
+        if blog_obj.user == request.user:
+            blog_obj.delete()
+
+    except Exception as e:
+        print(e)    
+
+    return redirect('/see-blog/')
 
 def blog_update(request):
    return render(request , 'update_blog.html')

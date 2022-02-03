@@ -1,5 +1,4 @@
-import imp
-import re
+
 from django.shortcuts import redirect, render 
 from .forms import *
 from home.models import *
@@ -58,7 +57,15 @@ def blog_detail(request , slug):
 
 
 def see_blog(request):
-    return render(request , 'see_blog.html')
+    context =  {}
+    try:
+        context['blog_objs'] = BlogModel.objects.filter(user = request.user)
+    except Exception as e:
+        print('<==========EXCEPTION=============>')
+        print(e)
+        print('<==========End EXCEPTION=========>')
+    
+    return render(request , 'see_blog.html' , context)
 
 def blog_delete(request):
     pass
